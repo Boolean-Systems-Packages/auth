@@ -1,0 +1,34 @@
+{
+  "name": "@boolean/auth",
+  "version": "0.1.0",
+  "description": "Auth manager completo para frontends Boolean. Maneja tokens, refresh automático, estado de sesión y device context.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types":   "./dist/index.d.ts",
+      "import":  "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": ["boolean", "auth", "sdk", "internal"],
+  "author": "Boolean Systems",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@boolean/api-auth": "workspace:*",
+    "@boolean/http": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  }
+}
