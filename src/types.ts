@@ -2,7 +2,7 @@
 // Tipos del Auth Manager
 // ─────────────────────────────────────────────
 
-import type { User, TokenPair } from "@boolean/api-auth";
+import type { User, TokenPair } from "@boolean-systems-packages/api-auth";
 
 export type { User, TokenPair };
 

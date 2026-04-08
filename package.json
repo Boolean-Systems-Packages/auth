@@ -1,5 +1,5 @@
 {
-  "name": "@boolean/auth",
+  "name": "@boolean-systems-packages/auth",
   "version": "0.1.0",
   "description": "Auth manager completo para frontends Boolean. Maneja tokens, refresh automático, estado de sesión y device context.",
   "main": "./dist/index.js",
@@ -21,10 +21,13 @@
   "keywords": ["boolean", "auth", "sdk", "internal"],
   "author": "Boolean Systems",
   "license": "UNLICENSED",
-  "private": true,
+  "private": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "dependencies": {
-    "@boolean/api-auth": "workspace:*",
-    "@boolean/http": "workspace:*"
+    "@boolean-systems-packages/api-auth": "workspace:*",
+    "@boolean-systems-packages/http": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

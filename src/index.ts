@@ -1,5 +1,5 @@
 import { AuthManager } from "./auth-manager";
-import { BooleanHttpClient } from "@boolean/http";
+import { BooleanHttpClient } from "@boolean-systems-packages/http";
 import type { AuthConfig } from "./types";
 
 export function createAuth(config: AuthConfig): AuthManager {
@@ -7,6 +7,6 @@ export function createAuth(config: AuthConfig): AuthManager {
 }
 
 export { AuthManager };
-// Re-exportado para que los consumers no necesiten instalar @boolean/http por separado
+// Re-exportado para que los consumers no necesiten instalar @boolean-systems-packages/http por separado
 export { BooleanHttpClient };
 export type { AuthConfig, AuthState, LoginPayload, ResumePayload, User, TokenPair } from "./types";

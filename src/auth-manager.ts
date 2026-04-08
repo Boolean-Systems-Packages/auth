@@ -1,7 +1,7 @@
-import { createAuthClient } from "@boolean/api-auth";
+import { createAuthClient } from "@boolean-systems-packages/api-auth";
 import { getFingerprint, getOrCreateDeviceId } from "./device";
 import type { AuthConfig, AuthState, LoginPayload, ResumePayload } from "./types";
-import type { User, TokenPair } from "@boolean/api-auth";
+import type { User, TokenPair } from "@boolean-systems-packages/api-auth";
 
 // ─────────────────────────────────────────────
 // Storage keys (con defaults)
@@ -132,7 +132,7 @@ export class AuthManager {
     } catch (err) {
       // 401, red, CORS, baseURL mal armada, etc. — limpia todo
       console.warn(
-        "[@boolean/auth] resume: falló GET perfil (p. ej. /mi-usuario/). Revisá REACT_APP_API_AUTH, authScheme, CORS y el token.",
+        "[@boolean-systems-packages/auth] resume: falló GET perfil (p. ej. /mi-usuario/). Revisá REACT_APP_API_AUTH, authScheme, CORS y el token.",
         err
       );
       this._clear();
