@@ -111,8 +111,10 @@ export class AuthManager {
    *   accessToken: myStorage.get("token"),
    *   refreshToken: myStorage.get("refresh"),
    * });
+   *
+   * @returns `true` si el perfil se cargó; `false` si falló GET /me/ (tokens limpiados, no lanza).
    */
-  async resume(payload: ResumePayload) {
+  async resume(payload: ResumePayload): Promise<boolean> {
     this._accessToken = payload.accessToken;
     this._refreshToken = payload.refreshToken ?? null;
 
@@ -127,13 +129,18 @@ export class AuthManager {
       const { data } = await client.me.get();
       this._user = data;
       localStorage.setItem(this.keys.user, JSON.stringify(data));
-    } catch {
-      // Token inválido — limpia todo
+    } catch (err) {
+      // 401, red, CORS, baseURL mal armada, etc. — limpia todo
+      console.warn(
+        "[@boolean/auth] resume: falló GET perfil (p. ej. /mi-usuario/). Revisá REACT_APP_API_AUTH, authScheme, CORS y el token.",
+        err
+      );
       this._clear();
-      return;
+      return false;
     }
 
     this._notify();
+    return true;
   }
 
   /**
@@ -183,7 +190,9 @@ export class AuthManager {
    * });
    */
   getAuthHeader(): string {
-    return this._accessToken ? `Bearer ${this._accessToken}` : "";
+    if (!this._accessToken) return "";
+    const scheme = this.config.authScheme ?? "Bearer";
+    return `${scheme} ${this._accessToken}`;
   }
 
   /**
@@ -200,8 +209,6 @@ export class AuthManager {
    */
   onAuthChange(callback: AuthChangeCallback): () => void {
     this.listeners.add(callback);
-    // Emite el estado actual inmediatamente
-    callback(this._state);
     return () => this.listeners.delete(callback);
   }
 

@@ -20,6 +20,13 @@ export interface AuthConfig {
   baseURL: string;
 
   /**
+   * Esquema del header `Authorization` hacia authapi.
+   * Django REST + JWT de Boolean suele usar `Token`; otras APIs usan `Bearer`.
+   * @default "Bearer"
+   */
+  authScheme?: "Bearer" | "Token";
+
+  /**
    * Claves de localStorage. Opcionales — tiene defaults razonables.
    */
   storage?: {
