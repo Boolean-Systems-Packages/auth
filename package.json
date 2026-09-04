@@ -16,6 +16,7 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --clean",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "prepublishOnly": "npm run build",
     "type-check": "tsc --noEmit"
   },
   "keywords": ["boolean", "auth", "sdk", "internal"],
@@ -26,8 +27,8 @@
     "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
-    "@boolean-systems-packages/api-auth": "workspace:*",
-    "@boolean-systems-packages/http": "workspace:*"
+    "@boolean-systems-packages/api-auth": "^0.1.0",
+    "@boolean-systems-packages/http": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
